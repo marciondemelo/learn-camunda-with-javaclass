@@ -18,7 +18,7 @@
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="flow-positivo" sourceRef="Gateway_1jmhfg8" targetRef="ganhou" />
     <bpmn:sequenceFlow id="flow-negativo" sourceRef="Gateway_1jmhfg8" targetRef="perdeu">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">!{resulado}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!resultado}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:endEvent id="Event_0z7uyr9">
       <bpmn:incoming>Flow_1s8wsk0</bpmn:incoming>
@@ -36,10 +36,10 @@
       <bpmn:incoming>flow-negativo</bpmn:incoming>
       <bpmn:outgoing>Flow_1sb7f2k</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:task id="sorteio" name="Sorteio">
+    <bpmn:serviceTask id="sorteio" name="Sorteio" camunda:class="com.example.worflow.event.RaffleDelegate">
       <bpmn:incoming>SequenceFlow_16gzt2m</bpmn:incoming>
       <bpmn:outgoing>Flow_00s2wck</bpmn:outgoing>
-    </bpmn:task>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="process-javaclass">
@@ -94,7 +94,7 @@
       <bpmndi:BPMNShape id="Activity_1g3jibg_di" bpmnElement="perdeu">
         <dc:Bounds x="760" y="230" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_110bt4o_di" bpmnElement="sorteio">
+      <bpmndi:BPMNShape id="Activity_1w6ayc0_di" bpmnElement="sorteio">
         <dc:Bounds x="460" y="147" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
